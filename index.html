@@ -2,9 +2,77 @@
 <html>
 <head>
 <title>Applicant Tracker</title>
+<style>
+body{
+font-family:Arial,sans-serif;
+padding:20px;
+background:#f5f5f5;
+}
+.container{
+max-width:600px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+}
+button{
+padding:10px 20px;
+background:#007bff;
+color:white;
+border:none;
+cursor:pointer;
+}
+#result{
+margin-top:20px;
+}
+</style>
 </head>
 <body>
-<h1>Applicant Tracker</h1>
-<p>Tracker is working now!</p>
+
+<div class="container">
+<h2>Applicant Status Tracker</h2>
+
+<input type="text" id="caseId" placeholder="Enter Case ID">
+
+<button onclick="searchCase()">Check Status</button>
+
+<div id="result"></div>
+</div>
+
+<script>
+async function searchCase(){
+
+const caseId =
+document.getElementById("caseId").value.trim();
+
+const response =
+await fetch("applicant.json");
+
+const data =
+await response.json();
+
+const applicant =
+data.find(item => item.caseId === caseId);
+
+if(applicant){
+document.getElementById("result").innerHTML = `
+<h3>${applicant.name}</h3>
+<p><strong>Status:</strong> ${applicant.status}</p>
+<p><strong>Destination:</strong> ${applicant.destination}</p>
+<p><strong>Note:</strong> ${applicant.note}</p>
+`;
+}else{
+document.getElementById("result").innerHTML =
+"<p>Case ID not found.</p>";
+}
+}
+</script>
+
 </body>
 </html>
