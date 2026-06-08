@@ -98,6 +98,15 @@ document.getElementById("result").innerHTML = `
 
 <h2>${applicant.name}</h2>
 
+<p style="display:inline-block;
+background:#28a745;
+color:white;
+padding:8px 15px;
+border-radius:20px;
+font-weight:bold;">
+APPROVED
+</p>
+
 <p><strong>Case ID:</strong> ${applicant.caseId}</p>
 
 <p><strong>Date of Birth:</strong> ${applicant.dateOfBirth}</p>
@@ -111,16 +120,24 @@ document.getElementById("result").innerHTML = `
 <p><strong>Destination:</strong> ${applicant.destination}</p>
 
 <p><strong>Current Status:</strong> ${applicant.status}</p>
+<p><strong>Current Stage:</strong> Work Permit Card Processing</p>
 
 <p><strong>Approval Date:</strong> ${applicant.approvalDate}</p>
 
 <p><strong>Approval Time:</strong> ${applicant.approvalTime}</p>
+<p><strong>Application Progress:</strong> 65% Complete</p>
 
 <p><strong>Expected Completion:</strong> ${applicant.expectedCompletion}</p>
 
+<p><strong>Estimated Processing Period:</strong> 2–3 Months</p>
 <p><strong>Application Notes:</strong><br>
 ${applicant.note}</p>
 
+<br><br>
+
+<button onclick="window.print()">
+Print Application Status
+</button>
 </div>
 
 `;
