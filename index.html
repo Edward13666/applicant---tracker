@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +6,10 @@
 <title>Applicant Status Tracker</title>
 
 <style>
+
 body{
     font-family: Arial, sans-serif;
     background:#f4f6f9;
-    margin:0;
     padding:30px;
 }
 
@@ -25,30 +24,23 @@ body{
 
 h1{
     color:#003366;
-    margin-bottom:5px;
-}
-
-.subtitle{
-    color:#666;
-    margin-bottom:25px;
 }
 
 input{
     width:100%;
     padding:12px;
+    margin-top:10px;
+    margin-bottom:15px;
     font-size:16px;
-    margin-bottom:10px;
-    box-sizing:border-box;
 }
 
 button{
     background:#0066cc;
     color:white;
     border:none;
-    padding:12px 20px;
-    cursor:pointer;
+    padding:12px 25px;
     border-radius:5px;
-    font-size:16px;
+    cursor:pointer;
 }
 
 button:hover{
@@ -71,43 +63,39 @@ button:hover{
     border-radius:20px;
     font-weight:bold;
     margin-bottom:15px;
-} 
+}
 
 .photo{
-width:180px;
-height:220px;
-object-fit:cover;
-border-radius:10px;
-border:3px solid #0066cc;
-display:block;
-margin-bottom:15px;
+    width:180px;
+    height:220px;
+    object-fit:cover;
+    border-radius:10px;
+    border:3px solid #0066cc;
+    display:block;
+    margin-bottom:15px;
 }
 
 .card p{
     margin:8px 0;
 }
 
-.not-found{
-    margin-top:20px;
-    color:red;
-    font-weight:bold;
-}
 </style>
-</head>
 
+</head>
 <body>
 
 <div class="container">
 
 <h1>Applicant Status Tracker</h1>
-<p class="subtitle">Work Permit Application Processing Portal</p>
 
 <input
 type="text"
 id="caseId"
 placeholder="Enter Case ID">
 
-<button onclick="searchCase()">Check Status</button>
+<button onclick="searchCase()">
+Check Status
+</button>
 
 <div id="result"></div>
 
@@ -115,12 +103,21 @@ placeholder="Enter Case ID">
 
 <script>
 
-function searchCase(){
+async function searchCase(){
 
-const enteredCase =
+const caseId =
 document.getElementById("caseId").value.trim();
 
-if(enteredCase === "PRN-USA-2026-68421"){
+const response =
+await fetch("applicant.json");
+
+const data =
+await response.json();
+
+const applicant =
+data.find(item => item.caseId === caseId);
+
+if(applicant){
 
 document.getElementById("result").innerHTML = `
 
@@ -130,43 +127,36 @@ document.getElementById("result").innerHTML = `
 APPLICATION APPROVED
 </div>
 
-<img src="applicant%20photo.png" class="photo">
+<img src="applicant-photo.png" class="photo">
 
 <h2>${applicant.name}</h2>
 
-<p><strong>Case ID:</strong> PRN-USA-2026-68421</p>
+<p><strong>Case ID:</strong> ${applicant.caseId}</p>
 
-<p><strong>Date of Birth:</strong> June 26, 2000</p>
+<p><strong>Date of Birth:</strong> ${applicant.dateOfBirth}</p>
 
-<p><strong>Nationality:</strong> Jamaican</p>
+<p><strong>Nationality:</strong> ${applicant.nationality}</p>
 
-<p><strong>Email:</strong> sashagaygordon25@gmail.com</p>
+<p><strong>Email:</strong> ${applicant.email}</p>
 
-<p><strong>Phone:</strong> +1 (876) 909-6824</p>
+<p><strong>Phone:</strong> ${applicant.phone}</p>
 
-<p><strong>Occupation:</strong> Nurse (6-Month PR Work Permit)</p>
+<p><strong>Destination:</strong> ${applicant.destination}</p>
 
-<p><strong>Destination:</strong> United States of America</p>
+<p><strong>Status:</strong> ${applicant.status}</p>
 
-<p><strong>Status:</strong> APPROVED – Work Permit Card Processing In Progress</p>
+<p><strong>Approval Date:</strong> ${applicant.approvalDate}</p>
 
-<p><strong>Current Stage:</strong> Work Permit Card Processing</p>
-
-<p><strong>Approval Date:</strong> Friday, June 5, 2026</p>
-
-<p><strong>Approval Time:</strong> 11:48 AM</p>
-
-<p><strong>Processing Resumed:</strong> Monday, June 8, 2026 at 9:00 AM</p>
-
-<p><strong>Estimated Completion:</strong> September 8, 2026</p>
-
-<p><strong>Estimated Processing Period:</strong> 2–3 Months</p>
+<p><strong>Approval Time:</strong> ${applicant.approvalTime}</p>
 
 <p><strong>Application Progress:</strong> 65% Complete</p>
 
-<p><strong>Official Note:</strong><br>
-The 6-Month Nurse (PR) Work Permit Application was officially approved on Friday, June 5, 2026 at 11:48 AM. Processing of the Work Permit Card resumed on Monday, June 8, 2026 at 9:00 AM. The card is currently in production and is expected to be completed within 2–3 months from the resumption date. Applicants will be notified once processing is finalized and the document is ready for issuance.
-</p>
+<p><strong>Expected Completion:</strong> ${applicant.expectedCompletion}</p>
+
+<p><strong>Estimated Processing Period:</strong> 2-3 Months</p>
+
+<p><strong>Application Notes:</strong><br>
+${applicant.note}</p>
 
 <br>
 
@@ -181,7 +171,7 @@ Print Application Status
 }else{
 
 document.getElementById("result").innerHTML =
-'<div class="not-found">Case ID not found.</div>';
+"<h3 style='color:red;'>Case ID not found.</h3>";
 
 }
 
@@ -191,4 +181,3 @@ document.getElementById("result").innerHTML =
 
 </body>
 </html>
-```
