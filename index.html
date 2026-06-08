@@ -1,51 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Applicant Tracker</title>
+<title>Applicant Status Tracker</title>
+
 <style>
 body{
 font-family:Arial,sans-serif;
-padding:20px;
-background:#f5f5f5;
+background:#f4f6f9;
+padding:30px;
 }
+
 .container{
-max-width:600px;
+max-width:900px;
 margin:auto;
 background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,.1);
+padding:25px;
+border-radius:12px;
+box-shadow:0 0 15px rgba(0,0,0,.1);
 }
+
+h1{
+color:#003366;
+}
+
 input{
 width:100%;
-padding:10px;
-margin:10px 0;
+padding:12px;
+margin-top:10px;
+margin-bottom:10px;
+font-size:16px;
 }
+
 button{
-padding:10px 20px;
-background:#007bff;
+background:#0066cc;
 color:white;
+padding:12px 25px;
 border:none;
 cursor:pointer;
+font-size:16px;
+border-radius:5px;
 }
-#result{
-margin-top:20px;
+
+.card{
+margin-top:25px;
+padding:20px;
+background:#f8f9fa;
+border-left:5px solid #0066cc;
+}
+
+.card p{
+margin:8px 0;
 }
 </style>
+
 </head>
+
 <body>
 
 <div class="container">
-<h2>Applicant Status Tracker</h2>
 
-<input type="text" id="caseId" placeholder="Enter Case ID">
+<h1>Applicant Status Tracker</h1>
 
-<button onclick="searchCase()">Check Status</button>
+<input
+type="text"
+id="caseId"
+placeholder="Enter Case ID">
+
+<button onclick="searchCase()">
+Check Status
+</button>
 
 <div id="result"></div>
+
 </div>
 
 <script>
+
 async function searchCase(){
 
 const caseId =
@@ -61,17 +91,49 @@ const applicant =
 data.find(item => item.caseId === caseId);
 
 if(applicant){
+
 document.getElementById("result").innerHTML = `
-<h3>${applicant.name}</h3>
-<p><strong>Status:</strong> ${applicant.status}</p>
+
+<div class="card">
+
+<h2>${applicant.name}</h2>
+
+<p><strong>Case ID:</strong> ${applicant.caseId}</p>
+
+<p><strong>Date of Birth:</strong> ${applicant.dateOfBirth}</p>
+
+<p><strong>Nationality:</strong> ${applicant.nationality}</p>
+
+<p><strong>Email:</strong> ${applicant.email}</p>
+
+<p><strong>Phone:</strong> ${applicant.phone}</p>
+
 <p><strong>Destination:</strong> ${applicant.destination}</p>
-<p><strong>Note:</strong> ${applicant.note}</p>
+
+<p><strong>Current Status:</strong> ${applicant.status}</p>
+
+<p><strong>Approval Date:</strong> ${applicant.approvalDate}</p>
+
+<p><strong>Approval Time:</strong> ${applicant.approvalTime}</p>
+
+<p><strong>Expected Completion:</strong> ${applicant.expectedCompletion}</p>
+
+<p><strong>Application Notes:</strong><br>
+${applicant.note}</p>
+
+</div>
+
 `;
+
 }else{
+
 document.getElementById("result").innerHTML =
-"<p>Case ID not found.</p>";
+"<h3>Case ID not found.</h3>";
+
 }
+
 }
+
 </script>
 
 </body>
