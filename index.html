@@ -1,29 +1,44 @@
 ```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Applicant Status Tracker</title>
 
 <style>
 body{
     font-family: Arial, sans-serif;
     background:#f4f6f9;
+    margin:0;
     padding:30px;
 }
 
 .container{
-    max-width:800px;
+    max-width:900px;
     margin:auto;
     background:white;
-    padding:25px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,.1);
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(0,0,0,.1);
+}
+
+h1{
+    color:#003366;
+    margin-bottom:5px;
+}
+
+.subtitle{
+    color:#666;
+    margin-bottom:25px;
 }
 
 input{
     width:100%;
     padding:12px;
-    margin:10px 0;
+    font-size:16px;
+    margin-bottom:10px;
+    box-sizing:border-box;
 }
 
 button{
@@ -32,24 +47,55 @@ button{
     border:none;
     padding:12px 20px;
     cursor:pointer;
+    border-radius:5px;
+    font-size:16px;
+}
+
+button:hover{
+    background:#0052a3;
 }
 
 .card{
-    margin-top:20px;
-    padding:20px;
+    margin-top:25px;
+    padding:25px;
     background:#f8f9fa;
-    border-left:5px solid #0066cc;
+    border-left:6px solid #0066cc;
+    border-radius:8px;
+}
+
+.badge{
+    display:inline-block;
+    background:#28a745;
+    color:white;
+    padding:8px 15px;
+    border-radius:20px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.card p{
+    margin:8px 0;
+}
+
+.not-found{
+    margin-top:20px;
+    color:red;
+    font-weight:bold;
 }
 </style>
-
 </head>
+
 <body>
 
 <div class="container">
 
 <h1>Applicant Status Tracker</h1>
+<p class="subtitle">Work Permit Application Processing Portal</p>
 
-<input type="text" id="caseId" placeholder="Enter Case ID">
+<input
+type="text"
+id="caseId"
+placeholder="Enter Case ID">
 
 <button onclick="searchCase()">Check Status</button>
 
@@ -59,55 +105,74 @@ button{
 
 <script>
 
-const applicants = [
-{
-    caseId: "PRN-USA-2026-68421",
-    name: "Sashagay Angella Gordon",
-    dob: "2000-06-26",
-    nationality: "Jamaican",
-    email: "sashagaygordon25@gmail.com",
-    phone: "+1 (876) 909-6824",
-    destination: "United States of America",
-    status: "Approved - Work Permit Card Processing In Progress",
-    approvalDate: "2026-06-05",
-    expectedCompletion: "September 8, 2026",
-    notes: "The 6-month Nurse (PR) Work Permit Application was approved and is currently being processed."
-}
-];
-
 function searchCase(){
 
-    const caseId =
-    document.getElementById("caseId").value.trim();
+const enteredCase =
+document.getElementById("caseId").value.trim();
 
-    const applicant =
-    applicants.find(a => a.caseId === caseId);
+if(enteredCase === "PRN-USA-2026-68421"){
 
-    if(applicant){
+document.getElementById("result").innerHTML = `
 
-        document.getElementById("result").innerHTML = `
-        <div class="card">
+<div class="card">
 
-        <h2>${applicant.name}</h2>
+<div class="badge">
+APPLICATION APPROVED
+</div>
 
-        <p><strong>Case ID:</strong> ${applicant.caseId}</p>
-        <p><strong>Date of Birth:</strong> ${applicant.dob}</p>
-        <p><strong>Nationality:</strong> ${applicant.nationality}</p>
-        <p><strong>Email:</strong> ${applicant.email}</p>
-        <p><strong>Phone:</strong> ${applicant.phone}</p>
-        <p><strong>Destination:</strong> ${applicant.destination}</p>
-        <p><strong>Status:</strong> ${applicant.status}</p>
-        <p><strong>Approval Date:</strong> ${applicant.approvalDate}</p>
-        <p><strong>Expected Completion:</strong> ${applicant.expectedCompletion}</p>
-        <p><strong>Notes:</strong> ${applicant.notes}</p>
+<h2>Sashagay Angella Gordon</h2>
 
-        </div>
-        `;
-    }
-    else{
-        document.getElementById("result").innerHTML =
-        "<h3>Case ID not found</h3>";
-    }
+<p><strong>Case ID:</strong> PRN-USA-2026-68421</p>
+
+<p><strong>Date of Birth:</strong> June 26, 2000</p>
+
+<p><strong>Nationality:</strong> Jamaican</p>
+
+<p><strong>Email:</strong> sashagaygordon25@gmail.com</p>
+
+<p><strong>Phone:</strong> +1 (876) 909-6824</p>
+
+<p><strong>Occupation:</strong> Nurse (6-Month PR Work Permit)</p>
+
+<p><strong>Destination:</strong> United States of America</p>
+
+<p><strong>Status:</strong> APPROVED – Work Permit Card Processing In Progress</p>
+
+<p><strong>Current Stage:</strong> Work Permit Card Processing</p>
+
+<p><strong>Approval Date:</strong> Friday, June 5, 2026</p>
+
+<p><strong>Approval Time:</strong> 11:48 AM</p>
+
+<p><strong>Processing Resumed:</strong> Monday, June 8, 2026 at 9:00 AM</p>
+
+<p><strong>Estimated Completion:</strong> September 8, 2026</p>
+
+<p><strong>Estimated Processing Period:</strong> 2–3 Months</p>
+
+<p><strong>Application Progress:</strong> 65% Complete</p>
+
+<p><strong>Official Note:</strong><br>
+The 6-Month Nurse (PR) Work Permit Application was officially approved on Friday, June 5, 2026 at 11:48 AM. Processing of the Work Permit Card resumed on Monday, June 8, 2026 at 9:00 AM. The card is currently in production and is expected to be completed within 2–3 months from the resumption date. Applicants will be notified once processing is finalized and the document is ready for issuance.
+</p>
+
+<br>
+
+<button onclick="window.print()">
+Print Application Status
+</button>
+
+</div>
+
+`;
+
+}else{
+
+document.getElementById("result").innerHTML =
+'<div class="not-found">Case ID not found.</div>';
+
+}
+
 }
 
 </script>
