@@ -1,9 +1,16 @@
 [
   {
     "caseId": "WPT-2025-001",
-    "name": "John Brown",
-    "status": "Interview Scheduled",
-    "destination": "USA",
-    "note": "Interview on June 15"
+    "name": "Sashagay Angella Gordon",
+    "dateOfBirth": "2000-06-26",
+    "nationality": "Jamaican",
+    "email": "sashagaygordon25@gmail.com",
+    "phone": "+1 (876) 909-6824",
+    "destination": "United States of America",
+    "status": "Permanent Resident Nurse Work Permit Application Approved",
+    "approvalDate": "2026-06-05",
+    "approvalTime": "11:48 AM",
+    "expectedCompletion": "2026-09-08",
+    "note": "The 6-month Nurse (PR) Work Permit Application was approved on June 5, 2026 at 11:48 AM. Processing for the Work Permit Card resumes at 9:00 AM on June 8, 2026. Estimated completion and issuance of the work permit card is expected within 2 to 3 months from the resumption date."
   }
 ]
