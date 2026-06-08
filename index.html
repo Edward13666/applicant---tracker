@@ -1,84 +1,74 @@
+```html
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Applicant Status Tracker</title>
 
 <style>
-
 body{
-    font-family: Arial, sans-serif;
-    background:#f4f6f9;
-    padding:30px;
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+padding:30px;
 }
 
 .container{
-    max-width:900px;
-    margin:auto;
-    background:white;
-    padding:30px;
-    border-radius:12px;
-    box-shadow:0 0 15px rgba(0,0,0,.1);
+max-width:900px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 0 15px rgba(0,0,0,.1);
 }
 
 h1{
-    color:#003366;
+color:#003366;
 }
 
 input{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    margin-bottom:15px;
-    font-size:16px;
+width:100%;
+padding:12px;
+margin:10px 0;
+font-size:16px;
+box-sizing:border-box;
 }
 
 button{
-    background:#0066cc;
-    color:white;
-    border:none;
-    padding:12px 25px;
-    border-radius:5px;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#0052a3;
+background:#0066cc;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:5px;
+cursor:pointer;
 }
 
 .card{
-    margin-top:25px;
-    padding:25px;
-    background:#f8f9fa;
-    border-left:6px solid #0066cc;
-    border-radius:8px;
+margin-top:20px;
+padding:20px;
+background:#f8f9fa;
+border-left:6px solid #0066cc;
 }
 
 .badge{
-    display:inline-block;
-    background:#28a745;
-    color:white;
-    padding:8px 15px;
-    border-radius:20px;
-    font-weight:bold;
-    margin-bottom:15px;
+display:inline-block;
+background:#28a745;
+color:white;
+padding:8px 15px;
+border-radius:20px;
+font-weight:bold;
+margin-bottom:15px;
 }
 
 .photo{
-    width:180px;
-    height:220px;
-    object-fit:cover;
-    border-radius:10px;
-    border:3px solid #0066cc;
-    display:block;
-    margin-bottom:15px;
+width:180px;
+height:220px;
+object-fit:cover;
+border-radius:10px;
+border:3px solid #0066cc;
+display:block;
+margin-bottom:15px;
 }
-
-.card p{
-    margin:8px 0;
-}
-
 </style>
 
 </head>
@@ -103,21 +93,12 @@ Check Status
 
 <script>
 
-async function searchCase(){
+function searchCase(){
 
 const caseId =
 document.getElementById("caseId").value.trim();
 
-const response =
-await fetch("applicant.json");
-
-const data =
-await response.json();
-
-const applicant =
-data.find(item => item.caseId === caseId);
-
-if(applicant){
+if(caseId === "PRN-USA-2026-68421"){
 
 document.getElementById("result").innerHTML = `
 
@@ -129,34 +110,35 @@ APPLICATION APPROVED
 
 <img src="applicant-photo.png" class="photo">
 
-<h2>${applicant.name}</h2>
+<h2>Sashagay Angella Gordon</h2>
 
-<p><strong>Case ID:</strong> ${applicant.caseId}</p>
+<p><strong>Case ID:</strong> PRN-USA-2026-68421</p>
 
-<p><strong>Date of Birth:</strong> ${applicant.dateOfBirth}</p>
+<p><strong>Date of Birth:</strong> June 26, 2000</p>
 
-<p><strong>Nationality:</strong> ${applicant.nationality}</p>
+<p><strong>Nationality:</strong> Jamaican</p>
 
-<p><strong>Email:</strong> ${applicant.email}</p>
+<p><strong>Email:</strong> sashagaygordon25@gmail.com</p>
 
-<p><strong>Phone:</strong> ${applicant.phone}</p>
+<p><strong>Phone:</strong> +1 (876) 909-6824</p>
 
-<p><strong>Destination:</strong> ${applicant.destination}</p>
+<p><strong>Occupation:</strong> Nurse (6-Month PR Work Permit)</p>
 
-<p><strong>Status:</strong> ${applicant.status}</p>
+<p><strong>Status:</strong> APPROVED – Work Permit Card Processing In Progress</p>
 
-<p><strong>Approval Date:</strong> ${applicant.approvalDate}</p>
+<p><strong>Approval Date:</strong> Friday, June 5, 2026</p>
 
-<p><strong>Approval Time:</strong> ${applicant.approvalTime}</p>
+<p><strong>Approval Time:</strong> 11:48 AM</p>
+
+<p><strong>Processing Resumed:</strong> Monday, June 8, 2026 at 9:00 AM</p>
+
+<p><strong>Expected Completion:</strong> September 8, 2026</p>
 
 <p><strong>Application Progress:</strong> 65% Complete</p>
 
-<p><strong>Expected Completion:</strong> ${applicant.expectedCompletion}</p>
-
-<p><strong>Estimated Processing Period:</strong> 2-3 Months</p>
-
-<p><strong>Application Notes:</strong><br>
-${applicant.note}</p>
+<p><strong>Official Note:</strong><br>
+The 6-Month Nurse (PR) Work Permit Application was officially approved on Friday, June 5, 2026 at 11:48 AM. Processing of the Work Permit Card resumed on Monday, June 8, 2026 at 9:00 AM. The card is currently in production and is expected to be completed within 2–3 months from the resumption date.
+</p>
 
 <br>
 
@@ -181,3 +163,4 @@ document.getElementById("result").innerHTML =
 
 </body>
 </html>
+```
